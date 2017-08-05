@@ -1,0 +1,52 @@
+% Copyright 2014 by Olivier DELHOMME
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\ProvidesPackageRCS $Header: beamerthemeEvry.sty,v d02a7cf4d8ae 2010/06/17 09:11:41 rivanvx $
+
+\usepackage{tikz}
+\usepackage{enumitem}  % pour le setlist[itemize]{label=--}
+\usetikzlibrary{shadows.blur,arrows}
+\usefonttheme{serif}
+
+\DeclareOptionBeamer{hideothersubsections}{\PassOptionsToPackage{hideothersubsections=#1}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{hideallsubsections}{\PassOptionsToPackage{hideallsubsections=#1}{beamerouterthemesidebar}}
+
+\DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{left}{\PassOptionsToPackage{left}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{right}{\PassOptionsToPackage{right}{beamerouterthemesidebar}}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+%\useoutertheme{sidebar}
+\useinnertheme[shadow=true]{rounded}
+\usecolortheme{orchid}
+\usecolortheme{whale}
+
+\setbeamercolor*{frametitle}{parent=palette primary}
+\setbeamerfont{block title}{size=\small}
+
+% Pour les tirets demi-cadrins des listes http://latex.wikia.com/wiki/List_of_LaTeX_symbols
+\setlist[itemize]{label=--}
+\setlist[itemize,2]{label=$\circ$}
+
+\setbeamertemplate{frametitle}
+{
+    \begin{centering}
+        \vspace{5pt}
+        \begin{tikzpicture}[]
+           \node[name=sec, shading=vertical, bottom color=green!80!black, top color=white, rounded corners=6pt, draw=none, text=white, inner sep=6pt, blur shadow={shadow blur steps=10, shadow scale=0.95, shadow opacity=60}]{\small\sc\insertsection};
+           \node[name=titl, below of=sec, shading=vertical, bottom color=blue!70!black, top color=white, rounded corners=6pt, draw=none, text=white, inner sep=6pt, blur shadow={shadow blur steps=10, shadow scale=0.95, shadow opacity=60}]{\small\sc\insertframetitle};
+        \end{tikzpicture}
+        \par
+    \end{centering}
+}
+
+\mode
+<all>
